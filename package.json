@@ -1,0 +1,35 @@
+{
+  "name": "node-cubobit-api",
+  "version": "0.1.0",
+  "description": "This project is designed to help you make your own projects that interact with the Cubobit API",
+  "main": "node-cubobit-api.js",
+  "scripts": {
+    "example": "node example/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc.js node-cubobit-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cubobit/node-cubobit-api.git"
+  },
+  "keywords": [
+    "cubobit",
+    "api"
+  ],
+  "author": "Ruben Meza <ruben.meza@cubobit.com,rmezar@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cubobit/node-cubobit-api/issues"
+  },
+  "homepage": "https://github.com/cubobit/node-cubobit-api#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0"
+  },
+  "dependencies": {
+    "events": "^3.0.0",
+    "lodash": "^4.17.10",
+    "rxjs": "^6.2.2",
+    "signale": "^1.2.1",
+    "ws": "^6.0.0"
+  }
+}
