@@ -5,6 +5,7 @@ let api = function cubobit () {
   const rpc = require('./lib/rpc.js')
   const signale = require('signale')
 
+  const getOMSs = require('./lib/getOMSs.js')
   const getInstruments = require('./lib/getInstruments.js')
   const subscribeLevel1 = require('./lib/subscribeLevel1.js')
   const subscribeLevel2 = require('./lib/subscribeLevel2.js')
@@ -46,6 +47,7 @@ let api = function cubobit () {
         callback()
       }
     },
+    getOMSs,
     getInstruments,
     subscribeTicker,
     subscribeLevel1,
