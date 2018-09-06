@@ -11,6 +11,7 @@ let api = function cubobit () {
   const subscribeLevel2 = require('./lib/subscribeLevel2.js')
   const subscribeTicker = require('./lib/subscribeTicker.js')
   const getAccountPositions = require('./lib/getAccountPositions.js')
+  const sendOrder = require('./lib/sendOrder.js')
 
   const defaultOptions = {
     apiUrl: '',
@@ -18,12 +19,10 @@ let api = function cubobit () {
     debug: false
   }
   cubobit.options = defaultOptions
-  cubobit.user = {}
 
   const login = () => {
     rpc.call('AuthenticateUser', cubobit.options.authJson, (response) => {
       if (response.Authenticated === true) {
-        cubobit.user = response.User
         rx.userData.next(response.User)
       } else {
         signale.warn('Auth data is not correct.')
@@ -52,7 +51,8 @@ let api = function cubobit () {
     subscribeTicker,
     subscribeLevel1,
     subscribeLevel2,
-    getAccountPositions
+    getAccountPositions,
+    sendOrder
   }
 }
 
