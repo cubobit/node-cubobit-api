@@ -13,7 +13,6 @@ let api = function cubobit () {
   const getAccountPositions = require('./lib/getAccountPositions.js')
   const sendOrder = require('./lib/sendOrder.js')
   const marketOrders = require('./lib/marketOrders.js')
-  console.log('marketOrders', marketOrders)
 
   const defaultOptions = {
     apiUrl: '',
