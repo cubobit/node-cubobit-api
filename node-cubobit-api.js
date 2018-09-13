@@ -4,6 +4,7 @@ let api = function cubobit () {
   const rx = require('./lib/rx.js')
   const rpc = require('./lib/rpc.js')
   const signale = require('signale')
+  const sha256 = require('crypto-js/hmac-sha256')
 
   const getOMSs = require('./lib/getOMSs.js')
   const getInstruments = require('./lib/getInstruments.js')
@@ -23,10 +24,26 @@ let api = function cubobit () {
   }
   cubobit.options = defaultOptions
 
-  const login = () => {
-    rpc.call('AuthenticateUser', cubobit.options.authJson, (response) => {
+  const generateSignature = () => {
+    const nonce = parseInt(Math.floor(Math.random() * (9999999999 - 1) + 1), 10)
+    const signature = sha256(
+      `${nonce}${cubobit.options.USERID}${cubobit.options.APIKEY}`,
+      cubobit.options.APISECRET
+    ).toString()
+    const response = {
+      APIKey: cubobit.options.APIKEY,
+      Signature: signature,
+      UserId: cubobit.options.USERID,
+      Nonce: `${nonce}`
+    }
+    return response
+  }
+
+  const login = (signature) => {
+    rpc.call('AuthenticateUser', signature, (response) => {
       if (response.Authenticated === true) {
         rx.userData.next(response.User)
+        signale.success('authenticated')
       } else {
         signale.warn('Auth data is not correct.')
       }
@@ -34,9 +51,10 @@ let api = function cubobit () {
   }
 
   rpc.events.on('open', () => {
-    // Change pass only public and secret key
-    if (_.has(cubobit.options, 'authJson')) {
-      login()
+    if (_.has(cubobit.options, 'CUSTOMSIGNATURE')) {
+      login(cubobit.options.CUSTOMSIGNATURE)
+    } else if (_.has(cubobit.options, 'APIKEY') && _.has(cubobit.options, 'APISECRET') && _.has(cubobit.options, 'USERID')) {
+      login(generateSignature())
     }
   })
 
