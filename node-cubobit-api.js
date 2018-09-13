@@ -14,6 +14,7 @@ let api = function cubobit () {
   const sendOrder = require('./lib/sendOrder.js')
   const marketOrders = require('./lib/marketOrders.js')
   const limitOrders = require('./lib/limitOrders.js')
+  const cancelAllOrders = require('./lib/cancelAllOrders.js')
 
   const defaultOptions = {
     apiUrl: '',
@@ -56,7 +57,8 @@ let api = function cubobit () {
     getAccountPositions,
     sendOrder,
     ...marketOrders,
-    ...limitOrders
+    ...limitOrders,
+    cancelAllOrders
   }
 }
 
