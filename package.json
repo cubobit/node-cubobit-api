@@ -26,6 +26,7 @@
     "eslint": "^5.2.0"
   },
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "events": "^3.0.0",
     "lodash": "^4.17.10",
     "rxjs": "^6.2.2",
