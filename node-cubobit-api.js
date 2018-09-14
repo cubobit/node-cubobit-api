@@ -8,6 +8,7 @@ let api = function cubobit () {
 
   const getOMSs = require('./lib/getOMSs.js')
   const getInstruments = require('./lib/getInstruments.js')
+  const getProducts = require('./lib/getProducts.js')
   const subscribeLevel1 = require('./lib/subscribeLevel1.js')
   const subscribeLevel2 = require('./lib/subscribeLevel2.js')
   const subscribeTicker = require('./lib/subscribeTicker.js')
@@ -68,6 +69,7 @@ let api = function cubobit () {
       }
     },
     getOMSs,
+    getProducts,
     getInstruments,
     subscribeTicker,
     subscribeLevel1,
