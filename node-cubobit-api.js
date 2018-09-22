@@ -10,6 +10,7 @@ let api = function cubobit () {
   const getInstruments = require('./lib/getInstruments.js')
   const getProducts = require('./lib/getProducts.js')
   const subscribeLevel1 = require('./lib/subscribeLevel1.js')
+  const unsubscribeLevel1 = require('./lib/unsubscribeLevel1.js')
   const subscribeLevel2 = require('./lib/subscribeLevel2.js')
   const subscribeTicker = require('./lib/subscribeTicker.js')
   const getAccountPositions = require('./lib/getAccountPositions.js')
@@ -68,11 +69,15 @@ let api = function cubobit () {
         callback()
       }
     },
+    stop () {
+      rpc.close()
+    },
     getOMSs,
     getProducts,
     getInstruments,
     subscribeTicker,
     subscribeLevel1,
+    unsubscribeLevel1,
     subscribeLevel2,
     getAccountPositions,
     sendOrder,
