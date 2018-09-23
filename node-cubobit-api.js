@@ -21,7 +21,7 @@ let api = function cubobit () {
 
   const defaultOptions = {
     apiUrl: '',
-    authenticate: false,
+    reconect: false,
     debug: false
   }
   cubobit.options = defaultOptions
@@ -57,6 +57,12 @@ let api = function cubobit () {
       login(cubobit.options.CUSTOMSIGNATURE)
     } else if (_.has(cubobit.options, 'APIKEY') && _.has(cubobit.options, 'APISECRET') && _.has(cubobit.options, 'USERID')) {
       login(generateSignature())
+    }
+  })
+
+  rpc.events.on('close', () => {
+    if (cubobit.options.reconect) {
+      rpc.connect(cubobit.options.apiUrl)
     }
   })
 
