@@ -6,6 +6,7 @@ let api = function cubobit () {
   const signale = require('signale')
   const sha256 = require('crypto-js/hmac-sha256')
 
+  const customCall = require('./lib/customCall.js')
   const getOMSs = require('./lib/getOMSs.js')
   const getInstruments = require('./lib/getInstruments.js')
   const getProducts = require('./lib/getProducts.js')
@@ -78,6 +79,7 @@ let api = function cubobit () {
     stop () {
       rpc.close()
     },
+    customCall,
     getOMSs,
     getProducts,
     getInstruments,
